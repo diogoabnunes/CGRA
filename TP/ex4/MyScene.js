@@ -51,7 +51,7 @@ class MyScene extends CGFscene {
 
         this.linear = true;
 
-        this.scaleFactor = 1.5;
+        this.scaleFactor = 5;
         this.selectedTexture = -1;        
         this.wrapS = 0;
         this.wrapT = 0;
@@ -123,15 +123,6 @@ class MyScene extends CGFscene {
 
         this.quadMaterial.apply();
 
-        // Default texture filtering in WebCGF is LINEAR. 
-        // Uncomment next line for NEAREST when magnifying, or 
-        // add a checkbox in the GUI to alternate in real time
-
-        if (!this.linear)
-                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-            else
-                this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
-
         if (this.displayQuad)
             this.quad.display();
 
@@ -139,7 +130,7 @@ class MyScene extends CGFscene {
             this.tangram.display();
 
         if (this.displayCube) {
-
+            // Evaluate texture filtering after applying textures and before drawing inside display() function
             this.cube.display();
         }
 
